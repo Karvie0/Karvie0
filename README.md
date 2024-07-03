@@ -12,7 +12,8 @@ const Karvie = struct {
 };
 
 // Welcome to my GitHub!
-pub fn main() void {
+pub fn main() !void {
+    const stdout = std.io.getStdOut().writer();
     
     // This is me
     const me = Karvie{
@@ -61,7 +62,7 @@ pub fn main() void {
     blender(buffer[0..used]);
     
     // And print!
-    std.debug.print("Hi! I like {s}\n", .{buffer[0..used]});
+    try stdout.print("Hi! I like {s}\n", .{buffer[0..used]});
 }
 
 fn concat(strings: []const []const u8, buffer: []u8) usize {
